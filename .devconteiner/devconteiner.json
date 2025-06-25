@@ -1,0 +1,25 @@
+{
+  "name": "PrismaGov Development Environment",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [
+    3000,
+    3001,
+    5173,
+    5432,
+    5555
+  ],
+  "postCreateCommand": "bash .devcontainer/setup-codespaces.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "prisma.prisma",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "remoteUser": "node"
+}

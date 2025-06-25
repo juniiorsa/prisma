@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Serviço principal da aplicação
+  app:
+    build:
+      context: .
+      # O Dockerfile especifica agora a versão do Node.js
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    depends_on:
+      - postgres
+      - gotenberg
+
+  # Serviço do Banco de Dados
+  postgres:
+    # ✅ ATUALIZADO: postgres:16 é a versão estável mais recente.
+    image: postgres:16
+    container_name: prismagov_db_codespaces
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: prismagov
+    volumes:
+      - postgres_data_codespaces:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # Serviço de Geração de PDF
+  gotenberg:
+    # ✅ ATUALIZADO: gotenberg:8.7 é uma versão mais recente e estável.
+    image: gotenberg/gotenberg:8.7
+    container_name: prismagov_gotenberg_codespaces
+    restart: unless-stopped
+
+volumes:
+  postgres_data_codespaces:
