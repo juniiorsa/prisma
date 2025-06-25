@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  nome      String?
+  password  String
+  documentos TermoReferencia[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TermoReferencia {
+  id          String   @id @default(cuid())
+  titulo      String
+  status      String   @default("Em Elaboracao")
+
+  // Relação com o User
+  autor       User     @relation(fields: [autorId], references: [id])
+  autorId     String
+
+  // Dados do formulário (JSON)
+  dadosColeta     Json?
+  dadosPrecos     Json?
+  dadosJustificativa Json?
+  dadosFiscalizacao  Json?
+
+  exportacoes ExportacaoTR[]
+
+  criado_em   DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+}
+
+model ExportacaoTR {
+  id           String   @id @default(cuid())
+  tr           TermoReferencia @relation(fields: [tr_id], references: [id])
+  tr_id        String
+
+  tipo         String   // ex: "pdf", "docx"
+  url_arquivo  String
+  hash_sha256  String
+
+  gerado_em    DateTime @default(now())
+}
