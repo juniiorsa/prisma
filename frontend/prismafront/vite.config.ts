@@ -1,12 +1,12 @@
-// Arquivo: vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path' // Adicione esta importação
+
+// Não precisamos mais do 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  css: {
-    postcss: path.resolve(__dirname, './postcss.config.js'),
-  },
+  // A configuração explícita do css.postcss não é necessária,
+  // pois o Vite detecta o postcss.config.js automaticamente.
+  // Removendo esta seção, simplificamos e evitamos o erro.
 })

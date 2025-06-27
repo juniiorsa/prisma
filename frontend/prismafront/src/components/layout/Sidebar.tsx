@@ -1,10 +1,8 @@
-// src/components/layout/Sidebar.tsx
 import React from 'react';
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-
-// Placeholder para ícones
-const Icon = ({ name }: { name: string }) => <span className="mr-3 h-6 w-6">{name.charAt(0)}</span>;
+import { Home, Files, FilePlus2 } from 'lucide-react';
+import Logo from './Logo'; // Corretamente importando o Logo
 
 const Sidebar: FC = () => {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -16,16 +14,23 @@ const Sidebar: FC = () => {
 
   return (
     <aside className="w-64 bg-white shadow-md flex flex-col flex-shrink-0">
-      <div className="flex items-center justify-center p-6 border-b space-x-2">
-        <span className="font-bold text-2xl">Prisma<span className="text-azul-eletrico">Gov</span></span>
+      <div className="flex items-center justify-center p-4 border-b">
+        {/* Usando o componente Logo importado */}
+        <Logo />
       </div>
       <nav className="flex-1 px-4 py-4 space-y-2">
-        <NavLink to="/" className={navLinkClass}><Icon name="Home" /> Início</NavLink>
-        <NavLink to="/documentos" className={navLinkClass}><Icon name="Docs" /> Documentos</NavLink>
-        <NavLink to="/documentos/novo" className={navLinkClass}><Icon name="New" /> Novo TR</NavLink>
+        <NavLink to="/" className={navLinkClass}>
+          <Home className="mr-3 h-5 w-5" /> Início
+        </NavLink>
+        <NavLink to="/documentos" className={navLinkClass}>
+          <Files className="mr-3 h-5 w-5" /> Documentos
+        </NavLink>
+        <NavLink to="/documentos/novo" className={navLinkClass}>
+          <FilePlus2 className="mr-3 h-5 w-5" /> Novo TR
+        </NavLink>
       </nav>
     </aside>
   );
 };
 
-export default Sidebar;
+export default Sidebar; // Exportando o componente Sidebar

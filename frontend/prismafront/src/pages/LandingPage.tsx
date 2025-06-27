@@ -1,8 +1,8 @@
-// src/components/marketing/HomePage.tsx
 import React from 'react';
 import type { FC } from 'react';
 
-const HomePage: FC = () => {
+// Renomeando o componente para refletir o nome do arquivo
+const LandingPage: FC = () => {
   return (
     <main>
       <section className="pt-32 pb-20 bg-white">
@@ -20,9 +20,8 @@ const HomePage: FC = () => {
           </div>
         </div>
       </section>
-      {/* Futuramente, adicionaremos as outras seções (Benefícios, Depoimentos, etc.) aqui */}
     </main>
   );
 };
 
-export default HomePage;
+export default LandingPage;
