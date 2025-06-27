@@ -1,3 +1,20 @@
+/* Diretivas do Tailwind - Devem vir primeiro */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilos globais migrados do template antigo */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
